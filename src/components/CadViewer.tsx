@@ -130,16 +130,15 @@ function createBananaMesh(modelType: ModelType = 'bar'): THREE.Group {
   mesh.castShadow = true;
   group.add(mesh);
 
-  // Scaled to match physical ~18cm banana vs rocket airframe
+  // Scaled to real STL bounding box proportions (BAR: 492mm, Taranis IV: 249mm, Banana: ~180mm)
   if (modelType === 'taranis4') {
-    // Taranis IV was ~19cm tall, approximately the exact length of a standard banana (~18cm)
-    // Scaled 1:1 with Taranis IV mesh in viewport (~7.5 units)
-    group.scale.set(2.7, 2.7, 2.7);
-    group.position.set(2.6, -0.85, 0);
+    // Taranis IV is 249mm in STL height (~25cm). Next to an 18cm banana, it is about the size of the banana (banana is ~75% of height)
+    group.scale.set(2.2, 2.2, 2.2);
+    group.position.set(2.4, -1.5, 0);
     group.rotation.z = -0.06;
   } else {
-    // BAR stands ~75cm tall (~4.2x the length of a standard 18cm banana)
-    group.scale.set(0.78, 0.78, 0.78);
+    // BAR is 492mm in STL height (~50cm). Next to an 18cm banana, BAR is ~2.7x taller
+    group.scale.set(1.1, 1.1, 1.1);
     group.position.set(2.4, -3.2, 0);
     group.rotation.z = -0.15;
   }
@@ -430,15 +429,15 @@ export default function CadViewer() {
             {showBanana && (
               <span className="text-[10px] uppercase bg-amber-950 text-amber-300 border border-amber-800/50 px-1.5 rounded font-bold flex items-center gap-1 animate-pulse">
                 <span>🍌</span>
-                <span>{activeModel === 'taranis4' ? '1:1 Banana Scale (~19cm)' : 'Cavendish Banana (~18cm)'}</span>
+                <span>{activeModel === 'taranis4' ? 'Scale: Taranis ~25cm vs ~18cm Banana' : 'Scale: BAR ~50cm vs ~18cm Banana'}</span>
               </span>
             )}
           </div>
           <div className="text-slate-500 text-[10px] mt-0.5">
             {showBanana
               ? activeModel === 'taranis4'
-                ? 'PHYSICAL SCALE: 1:1 WITH A STANDARD CAVENDISH BANANA (~19cm)'
-                : 'METRIC SCALE: 1x STANDARD CAVENDISH BANANA (18cm / 7.1 in)'
+                ? 'TARANIS AIRFRAME: ~25cm (249mm STL) • ABOUT THE SIZE OF AN 18cm BANANA'
+                : 'BAR AIRFRAME: ~50cm (492mm STL) • ~2.7x THE LENGTH OF AN 18cm BANANA'
               : 'ORBIT CONTROLS ACTIVE • ROTATE & ZOOM'}
           </div>
         </div>
@@ -469,11 +468,11 @@ export default function CadViewer() {
           <span>
             {activeModel === 'taranis4' ? (
               <>
-                <strong>Physical Scale Reference:</strong> Taranis IV stood ~19cm (7.5 in) tall — about the exact length of a standard 18cm Cavendish banana (1:1 scale).
+                <strong>Physical Scale:</strong> Taranis IV stood <strong>~25cm tall</strong> (249mm STL printed height) — about the size of a standard 18cm Cavendish banana.
               </>
             ) : (
               <>
-                <strong>Physical Scale Reference:</strong> Proportional to a standard 18cm (7.1 in) Cavendish banana. BAR stands ~75cm tall (~4.2 bananas tall).
+                <strong>Physical Scale:</strong> BAR stands <strong>~50cm tall</strong> (492mm STL printed height) — approximately <strong>2.7x</strong> the length of a standard 18cm Cavendish banana.
               </>
             )}
           </span>
