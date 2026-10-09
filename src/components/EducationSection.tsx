@@ -38,7 +38,7 @@ export default function EducationSection() {
                   Winner — 2025 IOM3 Undergraduate Outreach Challenge
                 </h3>
                 <p className="text-sm text-slate-300 mt-2 max-w-3xl leading-relaxed">
-                  Awarded 1st place nationally for the 2025 Challenge by the Institute of Materials, Minerals and Mining in March 2026 for excellence in translating complex physical metallurgy concepts (atomic slip planes, dislocation movement, and defect kinetics) into intuitive, accessible public demonstrations.
+                  Awarded 1st place nationally for the 2025 Challenge by the Institute of Materials, Minerals and Mining in March 2026. Produced an engaging gameshow-style video on volcanic glasses for younger audiences, using humor to keep viewers hooked while explaining rapid silicate melt quenching, alongside team segments on Pyrex and stained glass.
                 </p>
               </div>
             </div>

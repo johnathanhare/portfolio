@@ -113,29 +113,32 @@ const PROJECTS: ProjectData[] = [
     title: 'Winner — 2025 IOM3 Undergraduate Outreach Challenge (Awarded March 2026)',
     category: 'National Award / Science Communication',
     badge: '1st Place National Prize',
-    shortDesc: 'Awarded 1st place nationally in March 2026 for the 2025 IOM3 Undergraduate Outreach Challenge by the Institute of Materials, Minerals and Mining, recognized for translating complex metallurgical phenomena and crystal defect kinetics into accessible public demonstrations at the University of Sheffield.',
+    shortDesc: 'Awarded 1st place nationally in March 2026 for the 2025 IOM3 Outreach Challenge by the Institute of Materials, Minerals and Mining. Filmed an engaging gameshow-style video demystifying volcanic glasses for younger audiences as part of a collaborative team exploring Pyrex and stained glass.',
     specs: [
       { label: 'Awarding Body', val: 'Institute of Materials, Minerals and Mining (IOM3)' },
       { label: 'Competition', val: '2025 National Undergraduate Challenge' },
-      { label: 'Discipline', val: 'Physical Metallurgy & Crystal Kinetics' },
+      { label: 'Material Topic', val: 'Glass Science & Volcanic Glasses' },
       { label: 'Award Date', val: 'Awarded March 2026 @ University of Sheffield' }
     ],
     overview: [
-      'Won 1st place nationally in the 2025 IOM3 Undergraduate Outreach Challenge (awarded March 2026), designed to inspire the next generation of engineers by demystifying materials science.',
-      'Authored and presented interactive physical models illustrating dislocation movement, slip planes, and work hardening in metals.'
+      'Won 1st place nationally in the 2025 IOM3 Undergraduate Outreach Challenge (awarded March 2026), creating accessible, high-engagement materials science media for younger audiences.',
+      'Scripted and filmed a comedic gameshow-style video on volcanic glasses (obsidian, rapid silicate melt cooling), using humor to ensure school-age audiences stayed hooked while still delivering rich, rigorous scientific insight into amorphous networks.',
+      'Collaborated within an undergraduate team covering diverse glass technologies, with teammates exploring thermal shock in Pyrex (borosilicate) and metal-ion coloration in stained glass.'
     ],
     engineeringChallenges: [
-      'Conceptual Abstraction: Communicating microscopic metallurgical concepts (such as Taylor dislocation pinning and grain boundary impedance) to non-technical audiences without sacrificing scientific rigor.'
+      'Audience Engagement vs. Scientific Rigor: Communicating non-crystalline amorphous atomic networks and thermodynamic quenching rates to younger audiences who easily disengage from dry technical lectures.',
+      'Pacing & Video Production: Balancing quick-witted gameshow comedy with accurate material properties, silica viscosity, and geological formation kinetics.'
     ],
     solutions: [
-      'Created intuitive mechanical bubble-raft and magnetic analogues to physically visualize atomic slip and shear stresses.',
-      'Defended the educational methodology and metallurgical foundations before a panel of senior IOM3 materials fellows and industry judges.'
+      'Wrote and directed a comedic gameshow format that kept viewers laughing while actively teaching the physical mechanisms behind volcanic glass formation and rapid cooling.',
+      'Synthesized complex silicate phase transitions into visual, relatable analogies that tied directly into team segments on commercial Pyrex and historical stained glass.',
+      'Defended the outreach methodology and educational impact before a panel of senior IOM3 materials fellows and industry judges.'
     ],
     keyOutcomes: [
-      'Awarded national 1st place by IOM3.',
-      'Demonstrated high-level technical communication and presentation capabilities critical for industrial placement R&D teams.'
+      'Awarded national 1st place by IOM3 for outstanding undergraduate science communication.',
+      'Demonstrated high-tier creative direction, technical storytelling, and teamwork directly translatable to industrial R&D presentations.'
     ],
-    tags: ['IOM3', 'Materials Science', 'Science Communication', 'Metallurgy', 'Public Outreach', 'National Award']
+    tags: ['IOM3', 'Glass Science', 'Science Communication', 'Volcanic Glass', 'Public Outreach', 'National Award', 'Video Production']
   }
 ];
 
