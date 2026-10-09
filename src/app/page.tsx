@@ -110,18 +110,18 @@ const PROJECTS: ProjectData[] = [
   },
   {
     id: 'iom3-outreach',
-    title: 'Winner — IOM3 Undergraduate Outreach Challenge (Awarded March 2026)',
+    title: 'Winner — 2025 IOM3 Undergraduate Outreach Challenge (Awarded March 2026)',
     category: 'National Award / Science Communication',
     badge: '1st Place National Prize',
-    shortDesc: 'Awarded 1st place nationally in March 2026 by the Institute of Materials, Minerals and Mining for excellence in translating complex metallurgical phenomena and crystal defect kinetics into accessible public demonstrations at the University of Sheffield.',
+    shortDesc: 'Awarded 1st place nationally in March 2026 for the 2025 IOM3 Undergraduate Outreach Challenge by the Institute of Materials, Minerals and Mining, recognized for translating complex metallurgical phenomena and crystal defect kinetics into accessible public demonstrations at the University of Sheffield.',
     specs: [
       { label: 'Awarding Body', val: 'Institute of Materials, Minerals and Mining (IOM3)' },
-      { label: 'Scope', val: 'National UK Competition' },
+      { label: 'Competition', val: '2025 National Undergraduate Challenge' },
       { label: 'Discipline', val: 'Physical Metallurgy & Crystal Kinetics' },
-      { label: 'Award Date', val: 'March 2026 @ University of Sheffield' }
+      { label: 'Award Date', val: 'Awarded March 2026 @ University of Sheffield' }
     ],
     overview: [
-      'Participated in and won the national March 2026 IOM3 Undergraduate Outreach Challenge, designed to inspire the next generation of engineers by demystifying materials science.',
+      'Won 1st place nationally in the 2025 IOM3 Undergraduate Outreach Challenge (awarded March 2026), designed to inspire the next generation of engineers by demystifying materials science.',
       'Authored and presented interactive physical models illustrating dislocation movement, slip planes, and work hardening in metals.'
     ],
     engineeringChallenges: [

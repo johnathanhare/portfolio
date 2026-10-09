@@ -31,14 +31,14 @@ export default function EducationSection() {
                     National Award Winner
                   </span>
                   <span className="font-mono text-xs text-slate-400">
-                    Awarded March 2026 @ Sheffield
+                    2025 Challenge • Awarded March 2026 @ Sheffield
                   </span>
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-slate-100">
-                  Winner — IOM3 Undergraduate Outreach Challenge
+                  Winner — 2025 IOM3 Undergraduate Outreach Challenge
                 </h3>
                 <p className="text-sm text-slate-300 mt-2 max-w-3xl leading-relaxed">
-                  Awarded 1st place nationally by the Institute of Materials, Minerals and Mining for excellence in translating complex physical metallurgy concepts (atomic slip planes, dislocation movement, and defect kinetics) into intuitive, accessible public demonstrations.
+                  Awarded 1st place nationally for the 2025 Challenge by the Institute of Materials, Minerals and Mining in March 2026 for excellence in translating complex physical metallurgy concepts (atomic slip planes, dislocation movement, and defect kinetics) into intuitive, accessible public demonstrations.
                 </p>
               </div>
             </div>

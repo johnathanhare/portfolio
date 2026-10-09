@@ -23,7 +23,7 @@ export default function Hero() {
           </div>
           <span className="hidden sm:inline-flex items-center gap-1 font-mono text-xs text-amber-400 bg-amber-950/40 border border-amber-500/30 px-2.5 py-1 rounded-md">
             <Award className="h-3 w-3" />
-            <span>IOM3 National Award Winner (March 2026)</span>
+            <span>Winner — 2025 IOM3 Challenge (Awarded March 2026)</span>
           </span>
         </div>
 
@@ -85,7 +85,7 @@ export default function Hero() {
           <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
             <span className="text-[10px] text-slate-500 uppercase block tracking-wider">National Prize</span>
             <span className="text-lg font-bold text-amber-400">IOM3 Winner</span>
-            <span className="text-[11px] text-slate-400 block mt-0.5">Awarded March 2026</span>
+            <span className="text-[11px] text-slate-400 block mt-0.5">2025 Prize • Awarded March 2026</span>
           </div>
 
           <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
