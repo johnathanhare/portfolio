@@ -21,9 +21,10 @@ export default function ProjectCard({ project, onOpenDrawer }: ProjectCardProps)
           onOpenDrawer(project);
         }
       }}
-      className="group relative rounded-2xl border border-slate-800 bg-slate-950/70 p-6 transition-all duration-300 hover:border-cyan-500/50 hover:bg-slate-900/50 hover:shadow-xl hover:shadow-cyan-950/20 flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500/40"
+      className="group relative rounded-2xl border border-slate-800 bg-slate-950/70 p-6 transition-all duration-300 hover:border-cyan-500/50 hover:bg-slate-900/50 hover:shadow-xl hover:shadow-cyan-950/20 flex flex-col h-full md:min-h-[385px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500/40"
     >
-      <div>
+      {/* Top Header & Content Area */}
+      <div className="flex-1 flex flex-col">
         {/* Top Badges */}
         <div className="flex items-center justify-between gap-2 mb-3">
           <span className="font-mono text-xs uppercase px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800/40">
@@ -43,20 +44,22 @@ export default function ProjectCard({ project, onOpenDrawer }: ProjectCardProps)
         <p className="mt-2 text-sm text-slate-400 leading-relaxed">
           {project.shortDesc}
         </p>
+      </div>
 
-        {/* Key Specs Pills */}
-        <div className="mt-4 grid grid-cols-2 gap-2 text-[11px] font-mono">
+      {/* Key Specs Grey Boxes (Anchored at identical vertical position above bottom line) */}
+      <div className="mt-auto pt-5">
+        <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
           {project.specs.slice(0, 2).map((s, idx) => (
-            <div key={idx} className="bg-slate-900/80 border border-slate-800 rounded p-2">
-              <span className="text-slate-500 block text-[9px] uppercase">{s.label}</span>
-              <span className="text-slate-300 font-semibold truncate block">{s.val}</span>
+            <div key={idx} className="bg-slate-900/80 border border-slate-800 rounded p-2.5 h-[52px] flex flex-col justify-center">
+              <span className="text-slate-500 block text-[9px] uppercase tracking-wider">{s.label}</span>
+              <span className="text-slate-300 font-semibold truncate block mt-0.5">{s.val}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Card Footer Actions */}
-      <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+      <div className="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
         <button
           type="button"
           onClick={(e) => {
