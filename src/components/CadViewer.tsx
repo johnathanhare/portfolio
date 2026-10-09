@@ -26,16 +26,16 @@ const MODEL_DATA: Record<ModelType, ModelMeta> = {
     yieldStrength: '62 MPa',
     modulus: '3.8 GPa',
     process: 'Blender & CAD • FDM 3D Printed',
-    evolutionNotes: 'Modular airframe sculpted in Blender and engineered in CAD with reinforced motor retention, integrated rail guides, and payload bay.'
+    evolutionNotes: 'Bigger, better and more streamlined design sculpted in Blender & CAD. Worked flawlessly on its first flight with soft parachute recovery.'
   },
   taranis4: {
     name: 'Taranis IV',
-    badge: 'Flight Model',
+    badge: 'Final Iteration',
     material: 'Lightweight PLA+ / PETG',
     yieldStrength: '52 MPa',
     modulus: '3.1 GPa',
     process: 'CAD • Additive Manufacturing',
-    evolutionNotes: 'Trapezoidal swept-fin geometry tuned with OpenRocket calculations to establish a stable 1.5-caliber apogee margin.'
+    evolutionNotes: 'Final iteration of the Taranis family. Swept-fin geometry tuned with OpenRocket calculations to establish a rock-solid 1.5-caliber apogee margin.'
   }
 };
 

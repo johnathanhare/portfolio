@@ -49,7 +49,7 @@ const PROJECTS: ProjectData[] = [
     title: 'Aerodynamic Rocketry Iteration: Taranis IV & BAR',
     category: 'Aerospace Prototyping / Additive Manufacturing',
     badge: 'Blender & CAD Flight Models',
-    shortDesc: 'Physical engineering iteration series sculpted in Blender and engineered in CAD, spanning the swept-fin Taranis IV and the modular BAR (Big Awesome Rocket). Solved flight instability via OpenRocket Barrowman analysis and custom parachute recovery.',
+    shortDesc: 'Physical engineering iteration series sculpted in Blender and engineered in CAD. Spans Taranis IV (the final iteration of the Taranis family) and BAR (a bigger, better, and more streamlined design that worked flawlessly on its first flight).',
     specs: [
       { label: 'Rocket Series', val: 'Taranis IV & BAR Modular' },
       { label: 'Modeling Tools', val: 'Blender & Parametric CAD' },
@@ -57,8 +57,8 @@ const PROJECTS: ProjectData[] = [
       { label: 'Aerodynamics', val: 'OpenRocket (.ork) Simulation' }
     ],
     overview: [
-      'Documented complete physical engineering design cycles from early flight stability testing to soft parachute recovery across the Taranis and BAR rocket platforms.',
-      'Modeled organic aerodynamic airframe geometries in Blender while using parametric CAD for precision motor collars, rail guides, and modular bay connections.'
+      'Documented complete physical engineering design cycles across the Taranis and BAR rocket platforms, moving from early flight stability testing to soft parachute recovery.',
+      'Taranis IV stands as the final iteration of the Taranis family, while BAR provides a bigger, better, and more streamlined design sculpted in Blender and engineered in CAD that worked flawlessly on its first flight.'
     ],
     engineeringChallenges: [
       'Early Apogee Instability: Initial launch configurations experienced mid-flight tumbling caused by an inadequate stability margin between Center of Gravity (CG) and Center of Pressure (CP).',
@@ -66,13 +66,14 @@ const PROJECTS: ProjectData[] = [
       'Modularity & Field Repair: Early iterations required entire airframe reprints after hard landings.'
     ],
     solutions: [
-      'Simulated aerodynamic stability in OpenRocket, designing swept trapezoidal fins for Taranis IV to establish a rock-solid 1.5-caliber margin.',
+      'Simulated aerodynamic stability in OpenRocket, designing swept trapezoidal fins for Taranis IV (final iteration of the Taranis family) to establish a rock-solid 1.5-caliber margin.',
       'Engineered a multi-section modular architecture for BAR (Engine Bay, Mid Section, Top Section, Nosecone) in Blender and CAD for rapid component replacement.',
       'Upgraded structural engine collars to high-temperature carbon-fiber reinforced PETG.'
     ],
     keyOutcomes: [
-      '100% repeatable flight stability and soft parachute deployment on subsequent trials.',
-      'Native STL files from the design history rendered live in the site’s interactive 3D WebGL viewport.'
+      'BAR worked flawlessly on its first flight with soft parachute recovery.',
+      'Taranis IV established 100% flight stability as the final evolution of the Taranis family.',
+      'Native STL files rendered live in the site’s interactive 3D WebGL viewport.'
     ],
     tags: ['BAR Rocket', 'Taranis IV', 'Blender', 'CAD', '3D Printing', 'OpenRocket', 'Aerodynamics', 'Failure Analysis', 'PETG']
   },
