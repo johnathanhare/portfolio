@@ -34,7 +34,7 @@ const MODEL_DATA: Record<ModelType, ModelMeta> = {
 };
 
 // Procedurally generated standard metric Cavendish banana (~18-20cm reference)
-function createBananaMesh(): THREE.Group {
+function createBananaMesh(modelType: ModelType = 'bar'): THREE.Group {
   const group = new THREE.Group();
 
   const points = [
@@ -130,10 +130,19 @@ function createBananaMesh(): THREE.Group {
   mesh.castShadow = true;
   group.add(mesh);
 
-  // Scaled to match physical ~18cm banana vs ~75cm rocket airframe
-  group.scale.set(0.78, 0.78, 0.78);
-  group.position.set(2.4, -3.2, 0);
-  group.rotation.z = -0.15;
+  // Scaled to match physical ~18cm banana vs rocket airframe
+  if (modelType === 'taranis4') {
+    // Taranis IV was ~19cm tall, approximately the exact length of a standard banana (~18cm)
+    // Scaled 1:1 with Taranis IV mesh in viewport (~7.5 units)
+    group.scale.set(2.7, 2.7, 2.7);
+    group.position.set(2.6, -0.85, 0);
+    group.rotation.z = -0.06;
+  } else {
+    // BAR stands ~75cm tall (~4.2x the length of a standard 18cm banana)
+    group.scale.set(0.78, 0.78, 0.78);
+    group.position.set(2.4, -3.2, 0);
+    group.rotation.z = -0.15;
+  }
 
   return group;
 }
@@ -257,7 +266,7 @@ export default function CadViewer() {
           group.add(mesh);
 
           // Standard Metric Banana for Scale (~18-20cm reference)
-          const banana = createBananaMesh();
+          const banana = createBananaMesh(type);
           banana.visible = showBananaRef.current;
           bananaMeshRef.current = banana;
           group.add(banana);
@@ -421,13 +430,15 @@ export default function CadViewer() {
             {showBanana && (
               <span className="text-[10px] uppercase bg-amber-950 text-amber-300 border border-amber-800/50 px-1.5 rounded font-bold flex items-center gap-1 animate-pulse">
                 <span>🍌</span>
-                <span>Cavendish Banana (~18cm)</span>
+                <span>{activeModel === 'taranis4' ? '1:1 Banana Scale (~19cm)' : 'Cavendish Banana (~18cm)'}</span>
               </span>
             )}
           </div>
           <div className="text-slate-500 text-[10px] mt-0.5">
             {showBanana
-              ? 'METRIC SCALE: 1x STANDARD CAVENDISH BANANA (18cm / 7.1 in)'
+              ? activeModel === 'taranis4'
+                ? 'PHYSICAL SCALE: 1:1 WITH A STANDARD CAVENDISH BANANA (~19cm)'
+                : 'METRIC SCALE: 1x STANDARD CAVENDISH BANANA (18cm / 7.1 in)'
               : 'ORBIT CONTROLS ACTIVE • ROTATE & ZOOM'}
           </div>
         </div>
@@ -456,7 +467,15 @@ export default function CadViewer() {
         <div className="mt-2.5 rounded-lg bg-amber-950/20 border border-amber-800/40 px-3.5 py-2 text-xs text-amber-200/90 flex items-center gap-2 font-mono">
           <span className="text-sm">🍌</span>
           <span>
-            <strong>Physical Scale Reference:</strong> Proportional to a standard 18cm (7.1 in) Cavendish banana. Rocket stands ~75cm tall (~4.2 bananas).
+            {activeModel === 'taranis4' ? (
+              <>
+                <strong>Physical Scale Reference:</strong> Taranis IV stood ~19cm (7.5 in) tall — about the exact length of a standard 18cm Cavendish banana (1:1 scale).
+              </>
+            ) : (
+              <>
+                <strong>Physical Scale Reference:</strong> Proportional to a standard 18cm (7.1 in) Cavendish banana. BAR stands ~75cm tall (~4.2 bananas tall).
+              </>
+            )}
           </span>
         </div>
       )}
