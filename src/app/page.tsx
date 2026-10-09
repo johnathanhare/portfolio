@@ -61,9 +61,9 @@ const PROJECTS: ProjectData[] = [
       'Taranis IV stands as the final iteration of the Taranis family, while BAR provides a bigger, better, and more streamlined design sculpted in Blender and engineered in CAD that worked flawlessly on its first flight.'
     ],
     engineeringChallenges: [
-      'Early Apogee Instability: Initial launch configurations experienced mid-flight tumbling caused by an inadequate stability margin between Center of Gravity (CG) and Center of Pressure (CP).',
-      'Motor Heat Dissipation: Engine burn temperatures caused localized softening in standard PLA retention clips.',
-      'Modularity & Field Repair: Early iterations required entire airframe reprints after hard landings.'
+      'Early Apogee Instability: Initial launch configurations experienced mid-flight tumbling caused by an inadequate stability margin between Center of Gravity and Center of Pressure.',
+      'Motor Heat Dissipation: Engine burn temperatures caused localized softening in the areas around the motor',
+      'Rapid Iteration: Early iterations required entire reprints due to inexperience with CAD and tolerances'
     ],
     solutions: [
       'Simulated aerodynamic stability in OpenRocket, designing swept trapezoidal fins for Taranis IV (final iteration of the Taranis family) to establish a rock-solid 1.5-caliber margin.',
