@@ -66,9 +66,9 @@ const PROJECTS: ProjectData[] = [
       'Rapid Iteration: Early iterations required entire reprints due to inexperience with CAD and tolerances'
     ],
     solutions: [
-      'Simulated aerodynamic stability in OpenRocket, designing swept trapezoidal fins for Taranis IV (final iteration of the Taranis family) to establish a rock-solid 1.5-caliber margin.',
+      'Simulated aerodynamic stability in OpenRocket, designing swept trapezoidal fins for BAR',
       'Engineered a multi-section modular architecture for BAR (Engine Bay, Mid Section, Top Section, Nosecone) in Blender and CAD for rapid component replacement.',
-      'Engineered heat-deflecting air gaps and reinforced engine collar geometry in PLA+ to prevent motor burn deformation.'
+      'Redesigned the motor housing to reduce deformation around the base of the rocket'
     ],
     keyOutcomes: [
       'BAR worked flawlessly on its first flight with soft parachute recovery.',
