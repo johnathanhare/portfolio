@@ -33,16 +33,136 @@ const MODEL_DATA: Record<ModelType, ModelMeta> = {
   }
 };
 
+// Procedurally generated standard metric Cavendish banana (~18-20cm reference)
+function createBananaMesh(): THREE.Group {
+  const group = new THREE.Group();
+
+  const points = [
+    new THREE.Vector3(-0.18, -1.05, 0),
+    new THREE.Vector3(-0.15, -1.0, 0),
+    new THREE.Vector3(-0.05, -0.6, 0),
+    new THREE.Vector3(0.22, -0.1, 0),
+    new THREE.Vector3(0.32, 0.4, 0),
+    new THREE.Vector3(0.2, 0.9, 0),
+    new THREE.Vector3(-0.05, 1.3, 0),
+    new THREE.Vector3(-0.18, 1.48, 0),
+    new THREE.Vector3(-0.28, 1.62, 0)
+  ];
+  const curve = new THREE.CatmullRomCurve3(points);
+  const tubularSegments = 36;
+  const radialSegments = 7;
+  const frames = curve.computeFrenetFrames(tubularSegments, false);
+
+  const vertices: number[] = [];
+  const colors: number[] = [];
+  const indices: number[] = [];
+
+  for (let i = 0; i <= tubularSegments; i++) {
+    const u = i / tubularSegments;
+    const p = curve.getPointAt(u);
+    const N = frames.normals[i];
+    const B = frames.binormals[i];
+
+    let r: number;
+    if (u <= 0.02) {
+      r = 0.01;
+    } else if (u < 0.1) {
+      r = 0.01 + ((u - 0.02) / 0.08) * 0.14;
+    } else if (u > 0.92) {
+      r = 0.045; // stem
+    } else if (u > 0.85) {
+      r = 0.045 + ((0.92 - u) / 0.07) * 0.12;
+    } else {
+      r = 0.22 * Math.pow(Math.sin(Math.PI * ((u - 0.08) / 0.82)), 0.42);
+    }
+
+    const color = new THREE.Color();
+    if (u < 0.05) {
+      color.setHex(0x2a1a08); // dark bottom tip
+    } else if (u > 0.90) {
+      color.setHex(0x403b1c); // stem
+    } else if (u > 0.82) {
+      color.setHex(0xbdc631); // greenish yellow shoulder
+    } else {
+      color.setHex(0xfacc15); // golden banana yellow
+    }
+
+    for (let j = 0; j <= radialSegments; j++) {
+      const theta = (j / radialSegments) * Math.PI * 2;
+      const sin = Math.sin(theta);
+      const cos = Math.cos(theta);
+
+      const vx = p.x + r * (cos * N.x + sin * B.x);
+      const vy = p.y + r * (cos * N.y + sin * B.y);
+      const vz = p.z + r * (cos * N.z + sin * B.z);
+
+      vertices.push(vx, vy, vz);
+      colors.push(color.r, color.g, color.b);
+    }
+  }
+
+  for (let i = 0; i < tubularSegments; i++) {
+    for (let j = 0; j < radialSegments; j++) {
+      const a = i * (radialSegments + 1) + j;
+      const b = (i + 1) * (radialSegments + 1) + j;
+      const c = (i + 1) * (radialSegments + 1) + (j + 1);
+      const d = i * (radialSegments + 1) + (j + 1);
+
+      indices.push(a, b, d);
+      indices.push(b, c, d);
+    }
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+  geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+
+  const mat = new THREE.MeshStandardMaterial({
+    vertexColors: true,
+    roughness: 0.35,
+    metalness: 0.05,
+    flatShading: true
+  });
+
+  const mesh = new THREE.Mesh(geometry, mat);
+  mesh.castShadow = true;
+  group.add(mesh);
+
+  // Scaled to match physical ~18cm banana vs ~75cm rocket airframe
+  group.scale.set(0.78, 0.78, 0.78);
+  group.position.set(2.4, -3.2, 0);
+  group.rotation.z = -0.15;
+
+  return group;
+}
+
 export default function CadViewer() {
   const mountRef = useRef<HTMLDivElement>(null);
   const [activeModel, setActiveModel] = useState<ModelType>('bar');
   const [isWireframe, setIsWireframe] = useState(false);
   const [isRotating, setIsRotating] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [showBanana, setShowBanana] = useState(false);
 
   const sceneRef = useRef<THREE.Scene | null>(null);
   const currentMeshRef = useRef<THREE.Group | null>(null);
+  const bananaMeshRef = useRef<THREE.Group | null>(null);
+  const showBananaRef = useRef(false);
+  const isRotatingRef = useRef(true);
   const controlsRef = useRef<OrbitControls | null>(null);
+
+  useEffect(() => {
+    showBananaRef.current = showBanana;
+    if (bananaMeshRef.current) {
+      bananaMeshRef.current.visible = showBanana;
+    }
+  }, [showBanana]);
+
+  useEffect(() => {
+    isRotatingRef.current = isRotating;
+  }, [isRotating]);
 
   useEffect(() => {
     const currentMount = mountRef.current;
@@ -135,6 +255,13 @@ export default function CadViewer() {
           mesh.position.y = 0;
 
           group.add(mesh);
+
+          // Standard Metric Banana for Scale (~18-20cm reference)
+          const banana = createBananaMesh();
+          banana.visible = showBananaRef.current;
+          bananaMeshRef.current = banana;
+          group.add(banana);
+
           currentMeshRef.current = group;
           scene.add(group);
           setIsLoading(false);
@@ -155,7 +282,7 @@ export default function CadViewer() {
       reqId = requestAnimationFrame(animate);
       if (controlsRef.current) controlsRef.current.update();
 
-      if (currentMeshRef.current && isRotating) {
+      if (currentMeshRef.current && isRotatingRef.current) {
         currentMeshRef.current.rotation.y += 0.008;
       }
 
@@ -182,7 +309,7 @@ export default function CadViewer() {
       }
       renderer.dispose();
     };
-  }, [activeModel, isWireframe, isRotating]);
+  }, [activeModel, isWireframe]);
 
   const resetView = () => {
     if (controlsRef.current) {
@@ -245,7 +372,20 @@ export default function CadViewer() {
         )}
 
         {/* Floating Viewport Tool HUD */}
-        <div className="absolute top-3 right-3 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md border border-slate-800 rounded-lg p-1.5">
+        <div className="absolute top-3 right-3 flex items-center gap-2 bg-slate-950/85 backdrop-blur-md border border-slate-800 rounded-lg p-1.5 z-10">
+          <button
+            onClick={() => setShowBanana(!showBanana)}
+            title={showBanana ? 'Hide Banana for Scale' : 'Show Banana for Scale (~18cm Standard Cavendish)'}
+            className={`px-2.5 py-1 rounded transition flex items-center gap-1.5 text-xs font-mono font-medium ${
+              showBanana
+                ? 'bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-400/20'
+                : 'text-slate-400 hover:bg-slate-800 hover:text-amber-300'
+            }`}
+          >
+            <span className="text-sm leading-none">🍌</span>
+            <span>Banana Scale</span>
+          </button>
+          <div className="h-4 w-px bg-slate-800" />
           <button
             onClick={() => setIsRotating(!isRotating)}
             title={isRotating ? 'Pause Rotation' : 'Auto Rotate'}
@@ -271,15 +411,25 @@ export default function CadViewer() {
           </button>
         </div>
 
-        {/* Clean HUD Overlay (Source line removed) */}
+        {/* Clean HUD Overlay */}
         <div className="absolute bottom-3 left-3 bg-slate-950/85 backdrop-blur-md border border-slate-800 rounded-lg px-3 py-2 text-[11px] font-mono text-slate-400">
           <div className="text-cyan-400 font-bold flex items-center gap-2">
             <span>{meta.name}</span>
             <span className="text-[10px] uppercase bg-cyan-950 text-cyan-300 border border-cyan-800/40 px-1.5 rounded">
               {meta.badge}
             </span>
+            {showBanana && (
+              <span className="text-[10px] uppercase bg-amber-950 text-amber-300 border border-amber-800/50 px-1.5 rounded font-bold flex items-center gap-1 animate-pulse">
+                <span>🍌</span>
+                <span>Cavendish Banana (~18cm)</span>
+              </span>
+            )}
           </div>
-          <div className="text-slate-500 text-[10px] mt-0.5">ORBIT CONTROLS ACTIVE • ROTATE & ZOOM</div>
+          <div className="text-slate-500 text-[10px] mt-0.5">
+            {showBanana
+              ? 'METRIC SCALE: 1x STANDARD CAVENDISH BANANA (18cm / 7.1 in)'
+              : 'ORBIT CONTROLS ACTIVE • ROTATE & ZOOM'}
+          </div>
         </div>
       </div>
 
@@ -300,6 +450,16 @@ export default function CadViewer() {
         <span className="text-cyan-400 font-bold font-mono shrink-0">ITERATION NOTE:</span>
         <span className="leading-relaxed">{meta.evolutionNotes}</span>
       </div>
+
+      {/* Banana for Scale Reference Note */}
+      {showBanana && (
+        <div className="mt-2.5 rounded-lg bg-amber-950/20 border border-amber-800/40 px-3.5 py-2 text-xs text-amber-200/90 flex items-center gap-2 font-mono">
+          <span className="text-sm">🍌</span>
+          <span>
+            <strong>Physical Scale Reference:</strong> Proportional to a standard 18cm (7.1 in) Cavendish banana. Rocket stands ~75cm tall (~4.2 bananas).
+          </span>
+        </div>
+      )}
     </div>
   );
 }
