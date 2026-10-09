@@ -12,8 +12,6 @@ interface ModelMeta {
   name: string;
   badge: string;
   material: string;
-  yieldStrength: string;
-  modulus: string;
   process: string;
   evolutionNotes: string;
 }
@@ -22,19 +20,15 @@ const MODEL_DATA: Record<ModelType, ModelMeta> = {
   bar: {
     name: 'BAR Rocket',
     badge: 'Modular Airframe',
-    material: 'PETG / Al-6061 Engine Mount',
-    yieldStrength: '62 MPa',
-    modulus: '3.8 GPa',
+    material: 'PLA+',
     process: 'Blender & CAD • FDM 3D Printed',
     evolutionNotes: 'Bigger, better and more streamlined design sculpted in Blender & CAD. Worked flawlessly on its first flight with soft parachute recovery.'
   },
   taranis4: {
     name: 'Taranis IV',
     badge: 'Final Iteration',
-    material: 'Lightweight PLA+ / PETG',
-    yieldStrength: '52 MPa',
-    modulus: '3.1 GPa',
-    process: 'CAD • Additive Manufacturing',
+    material: 'PLA+',
+    process: 'Blender & CAD • FDM 3D Printed',
     evolutionNotes: 'Final iteration of the Taranis family. Swept-fin geometry tuned with OpenRocket calculations to establish a rock-solid 1.5-caliber apogee margin.'
   }
 };
@@ -289,19 +283,11 @@ export default function CadViewer() {
         </div>
       </div>
 
-      {/* Technical CAD Specification Telemetry Grid (clean formatting) */}
-      <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
+      {/* Technical CAD Specification Grid */}
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
         <div className="rounded-lg bg-slate-900/60 border border-slate-800/80 p-3">
           <span className="text-slate-500 block text-[10px] uppercase">Material Specification</span>
-          <span className="text-slate-200 font-semibold">{meta.material}</span>
-        </div>
-        <div className="rounded-lg bg-slate-900/60 border border-slate-800/80 p-3">
-          <span className="text-slate-500 block text-[10px] uppercase">Yield Strength</span>
-          <span className="text-amber-400 font-semibold">{meta.yieldStrength}</span>
-        </div>
-        <div className="rounded-lg bg-slate-900/60 border border-slate-800/80 p-3">
-          <span className="text-slate-500 block text-[10px] uppercase">Young's Modulus (E)</span>
-          <span className="text-cyan-400 font-semibold">{meta.modulus}</span>
+          <span className="text-cyan-400 font-semibold">{meta.material}</span>
         </div>
         <div className="rounded-lg bg-slate-900/60 border border-slate-800/80 p-3">
           <span className="text-slate-500 block text-[10px] uppercase">Design & Process</span>

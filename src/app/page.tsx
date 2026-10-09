@@ -53,7 +53,7 @@ const PROJECTS: ProjectData[] = [
     specs: [
       { label: 'Rocket Series', val: 'Taranis IV & BAR Modular' },
       { label: 'Modeling Tools', val: 'Blender & Parametric CAD' },
-      { label: 'Material Selection', val: 'Carbon-Reinforced PETG / PLA+' },
+      { label: 'Material Selection', val: 'PLA+' },
       { label: 'Aerodynamics', val: 'OpenRocket (.ork) Simulation' }
     ],
     overview: [
@@ -68,14 +68,14 @@ const PROJECTS: ProjectData[] = [
     solutions: [
       'Simulated aerodynamic stability in OpenRocket, designing swept trapezoidal fins for Taranis IV (final iteration of the Taranis family) to establish a rock-solid 1.5-caliber margin.',
       'Engineered a multi-section modular architecture for BAR (Engine Bay, Mid Section, Top Section, Nosecone) in Blender and CAD for rapid component replacement.',
-      'Upgraded structural engine collars to high-temperature carbon-fiber reinforced PETG.'
+      'Engineered heat-deflecting air gaps and reinforced engine collar geometry in PLA+ to prevent motor burn deformation.'
     ],
     keyOutcomes: [
       'BAR worked flawlessly on its first flight with soft parachute recovery.',
       'Taranis IV established 100% flight stability as the final evolution of the Taranis family.',
       'Native STL files rendered live in the site’s interactive 3D WebGL viewport.'
     ],
-    tags: ['BAR Rocket', 'Taranis IV', 'Blender', 'CAD', '3D Printing', 'OpenRocket', 'Aerodynamics', 'Failure Analysis', 'PETG']
+    tags: ['BAR Rocket', 'Taranis IV', 'Blender', 'CAD', '3D Printing', 'OpenRocket', 'Aerodynamics', 'Failure Analysis', 'PLA+']
   },
   {
     id: 'tensile-tester',
